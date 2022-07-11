@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "projectiledamage",
+  "version": "${version}",
+  "name": "Projectile Damage Attribute",
+  "description": "Adds generic projectile damage, so ranged weapon damage can be changed.",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/example/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+    ],
+    "main": [
+      "net.projectiledamage.ProjectileDamage"
+    ]
+  },
+  "mixins": [
+    "projectiledamage.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.5",
+    "fabric": "*",
+    "minecraft": "1.18.2"
+  }
+}
