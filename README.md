@@ -18,6 +18,10 @@ Adds new EntityAttribute to the game, named `generic.projectile_damage`. This al
 
 You can also use the API provided by this mod, to set the damage of your custom ranged weapons.  
 
+# 🔧 Configuration
+
+**Server side** configuration can be found in the `config` directory, after running the game with the mod installed.
+
 # 🔨 Using it as a modder
 
 Add this mod as dependency into your build.gradle file.
