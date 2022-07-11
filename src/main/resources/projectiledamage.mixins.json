@@ -4,9 +4,9 @@
   "package": "net.projectiledamage.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "ProjectileWeaponItemMixin",
-    "BowItemMixin",
-    "LivingEntityMixin"
+    "RangedWeaponItemMixin",
+    "LivingEntityMixin",
+    "ServerWorldMixin"
   ],
   "client": [
   ],

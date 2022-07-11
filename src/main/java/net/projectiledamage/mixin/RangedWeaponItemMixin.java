@@ -13,10 +13,10 @@ import net.projectiledamage.internal.Constants;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(RangedWeaponItem.class)
-public abstract class ProjectileWeaponItemMixin extends Item implements IProjectileWeapon {
+public abstract class RangedWeaponItemMixin extends Item implements IProjectileWeapon {
     private Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers = null;
 
-    public ProjectileWeaponItemMixin(Settings settings) {
+    public RangedWeaponItemMixin(Settings settings) {
         super(settings);
     }
 
