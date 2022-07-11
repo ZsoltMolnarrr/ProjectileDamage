@@ -12,19 +12,30 @@ import net.projectiledamage.api.IProjectileWeapon;
 import net.projectiledamage.internal.Constants;
 import org.spongepowered.asm.mixin.Mixin;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Mixin(RangedWeaponItem.class)
 abstract class RangedWeaponItemMixin extends Item implements IProjectileWeapon {
     private Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers = null;
+    private List<EquipmentSlot> allowedSlots = List.of(EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND);
 
     RangedWeaponItemMixin(Settings settings) {
         super(settings);
     }
 
     public Multimap<EntityAttribute, EntityAttributeModifier> getAttributeModifiers(EquipmentSlot slot) {
-        return ((slot == EquipmentSlot.MAINHAND || slot == EquipmentSlot.OFFHAND) && this.attributeModifiers != null) ? this.attributeModifiers : super.getAttributeModifiers(slot);
+        return (allowedSlots.contains(slot) && this.attributeModifiers != null) ? this.attributeModifiers : super.getAttributeModifiers(slot);
     }
 
-    public void setProjectileDamage(double value) {
+    public void setProjectileDamage(double value, boolean mainHand, boolean offHand) {
+        allowedSlots = new ArrayList<>();
+        if (mainHand) {
+            allowedSlots.add(EquipmentSlot.MAINHAND);
+        }
+        if (offHand) {
+            allowedSlots.add(EquipmentSlot.OFFHAND);
+        }
         ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(AdditionalEntityAttributes.GENERIC_PROJECTILE_DAMAGE, new EntityAttributeModifier(Constants.GENERIC_PROJECTILE_MODIFIER_ID, "Projectile damage", (double)value, EntityAttributeModifier.Operation.ADDITION));
         this.attributeModifiers = builder.build();
