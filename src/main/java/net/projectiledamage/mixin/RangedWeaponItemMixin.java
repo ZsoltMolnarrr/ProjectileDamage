@@ -20,6 +20,9 @@ abstract class RangedWeaponItemMixin extends Item implements IProjectileWeapon {
     private Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers = null;
     private List<EquipmentSlot> allowedSlots = List.of(EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND);
 
+    // Helper, not actual source of truth
+    private double projectileDamage = 0;
+
     RangedWeaponItemMixin(Settings settings) {
         super(settings);
     }
@@ -36,8 +39,13 @@ abstract class RangedWeaponItemMixin extends Item implements IProjectileWeapon {
         if (offHand) {
             allowedSlots.add(EquipmentSlot.OFFHAND);
         }
+        projectileDamage = value;
         ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(AdditionalEntityAttributes.GENERIC_PROJECTILE_DAMAGE, new EntityAttributeModifier(Constants.GENERIC_PROJECTILE_MODIFIER_ID, "Projectile damage", (double)value, EntityAttributeModifier.Operation.ADDITION));
         this.attributeModifiers = builder.build();
+    }
+
+    public double getProjectileDamage() {
+        return projectileDamage;
     }
 }

@@ -6,4 +6,6 @@ public interface IProjectileWeapon {
     default void setProjectileDamage(double value) {
         this.setProjectileDamage(value, true, true);
     }
+
+    double getProjectileDamage();
 }
