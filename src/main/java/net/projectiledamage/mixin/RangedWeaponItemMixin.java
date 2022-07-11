@@ -13,15 +13,15 @@ import net.projectiledamage.internal.Constants;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(RangedWeaponItem.class)
-public abstract class RangedWeaponItemMixin extends Item implements IProjectileWeapon {
+abstract class RangedWeaponItemMixin extends Item implements IProjectileWeapon {
     private Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers = null;
 
-    public RangedWeaponItemMixin(Settings settings) {
+    RangedWeaponItemMixin(Settings settings) {
         super(settings);
     }
 
     public Multimap<EntityAttribute, EntityAttributeModifier> getAttributeModifiers(EquipmentSlot slot) {
-        return (slot == EquipmentSlot.MAINHAND && this.attributeModifiers != null) ? this.attributeModifiers : super.getAttributeModifiers(slot);
+        return ((slot == EquipmentSlot.MAINHAND || slot == EquipmentSlot.OFFHAND) && this.attributeModifiers != null) ? this.attributeModifiers : super.getAttributeModifiers(slot);
     }
 
     public void setProjectileDamage(double value) {
