@@ -1,4 +1,4 @@
-# Projectile Damage Attribute
+![Projectile Damage Attribute](.github/projectile_damage_title.png)
 
 <div align="center">
 
@@ -26,8 +26,16 @@ You can also use the API provided by this mod, to set the damage of your custom 
 
 Add this mod as dependency into your build.gradle file.
 ```
-some maven stuff
+repositories {
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+    modImplementation 'com.github.ZsoltMolnarrr:ProjectileDamage:VERSION_TAG'
+}
 ```
+
+(Substitute `VERSION_TAG` with the latest release version of this mod)
 
 Make sure the inheritance chain of your custom ranged weapon includes `RangedWeaponItem` or provide a custom implementation of `net.projectiledamage.api.IProjectileWeapon` interface (default implementaion can be found [here](./src/main/java/net/projectiledamage/api/IProjectileWeapon.java)).
 

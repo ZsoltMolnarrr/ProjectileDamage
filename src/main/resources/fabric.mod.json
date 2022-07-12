@@ -7,7 +7,7 @@
   "authors": [],
   "contact": {},
   "license": "MIT",
-  "icon": "assets/example/icon.png",
+  "icon": "assets/projectiledamage/icon.png",
   "environment": "*",
   "entrypoints": {
     "client": [
