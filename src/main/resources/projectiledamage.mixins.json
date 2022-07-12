@@ -6,7 +6,8 @@
   "mixins": [
     "RangedWeaponItemMixin",
     "LivingEntityMixin",
-    "ServerWorldMixin"
+    "ServerWorldMixin",
+    "RegistryMixin"
   ],
   "client": [
   ],
