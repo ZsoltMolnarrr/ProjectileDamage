@@ -108,6 +108,7 @@ if(project.hasProperty('release_type')) {
             changelog = ''
             releaseType = release_type
             addGameVersion "${project.minecraft_version}"
+            addGameVersion "Fabric"
 
             relations {
                 requiredDependency 'fabric-api'
