@@ -96,8 +96,8 @@ if(project.hasProperty('release_type')) {
 
     tasks.register("publishMod") {
         dependsOn(build)
-        // finalizedBy(tasks.curseforge)
-        // finalizedBy(tasks.modrinth)
+        finalizedBy(tasks.curseforge)
+        finalizedBy(tasks.modrinth)
         finalizedBy(tasks.githubRelease)
     }
 
