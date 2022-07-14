@@ -8,6 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
 import net.projectiledamage.api.IProjectileWeapon;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -46,6 +47,10 @@ public class ItemStackMixin {
                         list.subList(i-1, list.size()).clear();
                     }
                 }
+            }
+            if (modifierList.size() > 1) {
+                list.removeAll(modifierList);
+                list.add(2, new TranslatableText("item.modifiers.both_hands").formatted(Formatting.GRAY));
             }
         }
     }
