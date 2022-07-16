@@ -28,26 +28,40 @@ public class ItemStackMixin {
     private void combineTooltip(PlayerEntity player, TooltipContext context, CallbackInfoReturnable<List<Text>> cir) {
         if (this.item instanceof IProjectileWeapon) {
             List<Text> list = cir.getReturnValue();
-            List<TranslatableText> modifierList = new ArrayList<>();
-            int indexOfFirstHeld = -1;
+            List<TranslatableText> heldInHandLines = new ArrayList<>();
+            List<TranslatableText> mainHandAttributes = new ArrayList<>();
+            List<TranslatableText> offHandAttributes = new ArrayList<>();
             for (int i = 0; i < list.size(); i++) {
                 if (list.get(i) instanceof TranslatableText translatableText) {
                     if (translatableText.getKey().startsWith("item.modifiers")) {
-                        modifierList.add(translatableText);
-                        if (indexOfFirstHeld == -1) {
-                            indexOfFirstHeld = i;
-                        }
+                        heldInHandLines.add(translatableText);
                     }
-                    if (modifierList.size() > 1) {
-                        list.subList(i-1, list.size()).clear();
+                    if (translatableText.getKey().startsWith("attribute.modifier")) {
+                        if (heldInHandLines.size() == 1) {
+                            mainHandAttributes.add(translatableText);
+                        }
+                        if (heldInHandLines.size() == 2) {
+                            offHandAttributes.add(translatableText);
+                        }
                     }
                 }
             }
-            if (indexOfFirstHeld >= 0) {
-                list.add(indexOfFirstHeld, new TranslatableText("item.modifiers.both_hands").formatted(Formatting.GRAY));
-            }
-            if (modifierList.size() > 1) {
-                list.removeAll(modifierList);
+            if(heldInHandLines.size() == 2) {
+                var mainHandLine = list.indexOf(heldInHandLines.get(0));
+                var offHandLine = list.indexOf(heldInHandLines.get(1));
+                list.set(mainHandLine, new TranslatableText("item.modifiers.both_hands").formatted(Formatting.GRAY));
+                list.remove(offHandLine);
+                for (var offhandAttribute: offHandAttributes) {
+                    if(mainHandAttributes.contains(offhandAttribute)) {
+                        list.remove(list.lastIndexOf(offhandAttribute));
+                    }
+                }
+
+                var lastIndex = list.size() - 1;
+                var lastLine = list.get(lastIndex);
+                if (lastLine.asString().isEmpty()) {
+                    list.remove(lastIndex);
+                }
             }
         }
     }
