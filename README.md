@@ -35,7 +35,16 @@ dependencies {
 }
 ```
 
-(Substitute `VERSION_TAG` with the latest release version of this mod)
+(Substitute `VERSION_TAG` with the latest release tag of this mod, for example: `1.18.2-1.0.6`)
+
+In `fabric.mod.json` add a dependency to the mod:
+```
+  "depends": {
+    "projectiledamage": "VERSION"
+  },
+```
+
+(Substitute `VERSION` with the latest release version of this mod, for example: `1.0.6`)
 
 Make sure the inheritance chain of your custom ranged weapon includes `RangedWeaponItem` or provide a custom implementation of `net.projectiledamage.api.IProjectileWeapon` interface (default implementaion can be found [here](./src/main/java/net/projectiledamage/api/IProjectileWeapon.java)).
 
