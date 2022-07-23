@@ -1,43 +1,29 @@
-package net.projectiledamage.mixin;
+package net.projectiledamage.client;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.item.TooltipContext;
+import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.projectiledamage.api.IProjectileWeapon;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static net.minecraft.item.ItemStack.MODIFIER_FORMAT;
 
-@Environment(EnvType.CLIENT)
-@Mixin(ItemStack.class)
-public class ItemStackMixin {
-    @Shadow private Item item;
-
-    @Inject(method = "getTooltip", at = @At(value = "RETURN", target = "Ljava/util/List;add(Ljava/lang/Object;)Z"))
-    private void combineTooltip(PlayerEntity player, TooltipContext context, CallbackInfoReturnable<List<Text>> cir) {
-        if (this.item instanceof IProjectileWeapon) {
-            List<Text> list = cir.getReturnValue();
-            mergeAttributeLines_MainHandOffHand(list);
-            replaceAttributeLines_BlueWithGreen(list);
-        }
+public class TooltipHelper {
+    public static void initialize() {
+        ItemTooltipCallback.EVENT.register((itemStack, context, lines) -> {
+            if (itemStack.getItem() instanceof IProjectileWeapon) {
+                mergeAttributeLines_MainHandOffHand(lines);
+                replaceAttributeLines_BlueWithGreen(lines);
+            }
+        });
     }
 
-    private void mergeAttributeLines_MainHandOffHand(List<Text> tooltip) {
+    private static void mergeAttributeLines_MainHandOffHand(List<Text> tooltip) {
         List<TranslatableText> heldInHandLines = new ArrayList<>();
         List<TranslatableText> mainHandAttributes = new ArrayList<>();
         List<TranslatableText> offHandAttributes = new ArrayList<>();
@@ -75,7 +61,7 @@ public class ItemStackMixin {
         }
     }
 
-    private void replaceAttributeLines_BlueWithGreen(List<Text> tooltip) {
+    private static void replaceAttributeLines_BlueWithGreen(List<Text> tooltip) {
         var attributeTranslationKey = "attribute.name.generic.projectile_damage";
         for (int i = 0; i < tooltip.size(); i++)  {
             var line = tooltip.get(i);

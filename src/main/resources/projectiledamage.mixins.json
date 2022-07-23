@@ -10,7 +10,6 @@
     "RegistryMixin"
   ],
   "client": [
-    "ItemStackMixin"
   ],
   "injectors": {
     "defaultRequire": 1
