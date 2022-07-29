@@ -17,6 +17,10 @@ on:
         - alpha
         - beta
         - release
+      changelog:
+        type: string
+        description: What changed
+        required: true
 
 permissions:
   contents: read
