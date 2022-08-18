@@ -3,12 +3,12 @@ package net.projectiledamage.internal;
 import net.minecraft.item.BowItem;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.util.registry.Registry;
+import net.projectiledamage.ProjectileDamage;
 import net.projectiledamage.api.IProjectileWeapon;
-import net.projectiledamage.config.ConfigManager;
 
 public class RegistryHelper {
     public static void applyDefaultAttributes() {
-        var config = ConfigManager.currentConfig;
+        var config = ProjectileDamage.configManager.currentConfig;
         for(var entry: Registry.ITEM.getEntrySet()) {
             var item = entry.getValue();
             if (item instanceof IProjectileWeapon) {
