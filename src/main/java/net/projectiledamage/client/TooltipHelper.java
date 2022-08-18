@@ -23,20 +23,22 @@ public class TooltipHelper {
     }
 
     private static void mergeAttributeLines_MainHandOffHand(List<Text> tooltip) {
-        List<TranslatableTextContent> heldInHandLines = new ArrayList<>();
-        List<TranslatableTextContent> mainHandAttributes = new ArrayList<>();
-        List<TranslatableTextContent> offHandAttributes = new ArrayList<>();
+        List<Text> heldInHandLines = new ArrayList<>();
+        List<Text> mainHandAttributes = new ArrayList<>();
+        List<Text> offHandAttributes = new ArrayList<>();
         for (int i = 0; i < tooltip.size(); i++) {
-            if (tooltip.get(i) instanceof TranslatableTextContent translatableText) {
+            var line = tooltip.get(i);
+            var content = line.getContent();
+            if (content instanceof TranslatableTextContent translatableText) {
                 if (translatableText.getKey().startsWith("item.modifiers")) {
-                    heldInHandLines.add(translatableText);
+                    heldInHandLines.add(line);
                 }
                 if (translatableText.getKey().startsWith("attribute.modifier")) {
                     if (heldInHandLines.size() == 1) {
-                        mainHandAttributes.add(translatableText);
+                        mainHandAttributes.add(line);
                     }
                     if (heldInHandLines.size() == 2) {
-                        offHandAttributes.add(translatableText);
+                        offHandAttributes.add(line);
                     }
                 }
             }
@@ -44,7 +46,8 @@ public class TooltipHelper {
         if(heldInHandLines.size() == 2) {
             var mainHandLine = tooltip.indexOf(heldInHandLines.get(0));
             var offHandLine = tooltip.indexOf(heldInHandLines.get(1));
-            tooltip.set(mainHandLine, Text.translatable(("item.modifiers.both_hands").formatted(Formatting.GRAY)));
+            tooltip.remove(mainHandLine);
+            tooltip.add(mainHandLine, Text.translatable("item.modifiers.both_hands").formatted(Formatting.GRAY));
             tooltip.remove(offHandLine);
             for (var offhandAttribute: offHandAttributes) {
                 if(mainHandAttributes.contains(offhandAttribute)) {
@@ -64,21 +67,29 @@ public class TooltipHelper {
         var attributeTranslationKey = "attribute.name.generic.projectile_damage";
         for (int i = 0; i < tooltip.size(); i++)  {
             var line = tooltip.get(i);
-            if (line instanceof TranslatableTextContent translatableLine) {
+            var content = line.getContent();
+//            System.out.println(i + ": " + content + " " + line.getClass());
+            if (content instanceof TranslatableTextContent translatable) {
                 var isProjectileAttributeLine = false;
                 var attributeValue = 0.0;
-                var args = translatableLine.getArgs();
-                if (translatableLine.getKey().startsWith("attribute.modifier.plus.0")) { // `.0` suffix for addition
-                    for (var arg: args) {
+//                System.out.println("Is translatable content");
+                if (translatable.getKey().startsWith("attribute.modifier.plus.0")) { // `.0` suffix for addition
+//                    System.out.println("Is attribute line");
+                    for (var arg: translatable.getArgs()) {
+//                        System.out.println("Sub-content type: " + arg.getClass());
                         if (arg instanceof String string) {
                             try {
                                 var number = Double.valueOf(string);
                                 attributeValue = number;
                             } catch (Exception ignored) { }
                         }
-                        if (arg instanceof TranslatableTextContent attribute) {
-                            if (attribute.getKey().startsWith(attributeTranslationKey)) {
-                                isProjectileAttributeLine = true;
+                        if (arg instanceof Text attributeText) {
+                            if (attributeText.getContent() instanceof TranslatableTextContent attributeTranslatable) {
+//                                System.out.println("Translatable sub-content: " + arg);
+                                if (attributeTranslatable.getKey().startsWith(attributeTranslationKey)) {
+//                                    System.out.println("Projectile attribute found");
+                                    isProjectileAttributeLine = true;
+                                }
                             }
                         }
                     }
