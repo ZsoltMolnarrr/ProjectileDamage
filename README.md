@@ -25,26 +25,32 @@ You can also use the API provided by this mod, to set the damage of your custom 
 # 🔨 Using it as a modder
 
 Add this mod as dependency into your build.gradle file.
-```
+```groovy
 repositories {
-    maven { url "https://jitpack.io" }
+    maven {
+        name = 'Modrinth'
+        url = 'https://api.modrinth.com/maven'
+        content {
+            includeGroup 'maven.modrinth'
+        }
+    }
 }
 
 dependencies {
-    modImplementation 'com.github.ZsoltMolnarrr:ProjectileDamage:VERSION_TAG'
+    modImplementation "maven.modrinth:projectile-damage-attribute:VERSION"
 }
 ```
 
-(Substitute `VERSION_TAG` with the latest release tag of this mod, for example: `1.18.2-1.0.6`)
+(Substitute `VERSION` with the name of the latest release available on [Modrinth](https://modrinth.com/mod/projectile-damage-attribute/versions), for example: `1.0.8+1.19`)
 
 In `fabric.mod.json` add a dependency to the mod:
-```
+```json
   "depends": {
-    "projectiledamage": "VERSION"
+    "projectiledamage": ">=VERSION"
   },
 ```
 
-(Substitute `VERSION` with the latest release version of this mod, for example: `1.0.6`)
+(Substitute `VERSION` with the latest release version of this mod, for example: `1.0.8+1.19`)
 
 Make sure the inheritance chain of your custom ranged weapon includes `RangedWeaponItem` or provide a custom implementation of `net.projectiledamage.api.IProjectileWeapon` interface (default implementaion can be found [here](./src/main/java/net/projectiledamage/api/IProjectileWeapon.java)).
 
