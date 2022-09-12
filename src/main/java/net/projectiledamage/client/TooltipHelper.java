@@ -14,12 +14,12 @@ import static net.minecraft.item.ItemStack.MODIFIER_FORMAT;
 
 public class TooltipHelper {
     public static void initialize() {
-//        ItemTooltipCallback.EVENT.register((itemStack, context, lines) -> {
-//            if (itemStack.getItem() instanceof IProjectileWeapon) {
-//                mergeAttributeLines_MainHandOffHand(lines);
-//                replaceAttributeLines_BlueWithGreen(lines);
-//            }
-//        });
+        ItemTooltipCallback.EVENT.register((itemStack, context, lines) -> {
+            if (itemStack.getItem() instanceof IProjectileWeapon) {
+                mergeAttributeLines_MainHandOffHand(lines);
+                replaceAttributeLines_BlueWithGreen(lines);
+            }
+        });
     }
 
     private static void mergeAttributeLines_MainHandOffHand(List<Text> tooltip) {
