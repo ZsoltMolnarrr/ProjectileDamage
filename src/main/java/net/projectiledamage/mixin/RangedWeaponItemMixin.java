@@ -7,7 +7,7 @@ import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.item.Item;
 import net.minecraft.item.RangedWeaponItem;
-import net.projectiledamage.api.AdditionalEntityAttributes;
+import net.projectiledamage.api.EntityAttributes_ProjectileDamage;
 import net.projectiledamage.api.IProjectileWeapon;
 import net.projectiledamage.internal.Constants;
 import org.spongepowered.asm.mixin.Mixin;
@@ -41,7 +41,7 @@ abstract class RangedWeaponItemMixin extends Item implements IProjectileWeapon {
         }
         projectileDamage = value;
         ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
-        builder.put(AdditionalEntityAttributes.GENERIC_PROJECTILE_DAMAGE, new EntityAttributeModifier(Constants.GENERIC_PROJECTILE_MODIFIER_ID, "Projectile damage", (double)value, EntityAttributeModifier.Operation.ADDITION));
+        builder.put(EntityAttributes_ProjectileDamage.GENERIC_PROJECTILE_DAMAGE, new EntityAttributeModifier(Constants.GENERIC_PROJECTILE_MODIFIER_ID, "Projectile damage", (double)value, EntityAttributeModifier.Operation.ADDITION));
         this.attributeModifiers = builder.build();
     }
 
