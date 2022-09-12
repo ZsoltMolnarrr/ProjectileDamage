@@ -72,6 +72,8 @@ java {
 shadowJar {
     configurations = [project.configurations.shadowCommon]
     classifier 'dev'
+
+    relocate 'net.tinyconfig', 'net.projectiledamage.tinyconfig'
 }
 
 remapJar {
