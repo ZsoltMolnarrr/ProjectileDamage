@@ -6,12 +6,12 @@ import net.minecraft.entity.effect.StatusEffectCategory;
 import net.projectiledamage.ProjectileDamage;
 
 public class StatusEffects_ProjectileDamage {
-    public static final String accuracyId = "accuracy";
-    public static final String accuracyUsualUDID = "e4f2bf5c-329f-11ed-a261-0242ac120002";
-    public static final StatusEffect ACCURACY = (new AccuracyStatusEffect(StatusEffectCategory.BENEFICIAL, 0xAAFFDD))
+    public static final String impactId = "impact";
+    public static final String impactUsualUDID = "e4f2bf5c-329f-11ed-a261-0242ac120002";
+    public static final StatusEffect IMPACT = (new ImpactStatusEffect(StatusEffectCategory.BENEFICIAL, 0xAAFFDD))
             .addAttributeModifier(
                     EntityAttributes_ProjectileDamage.GENERIC_PROJECTILE_DAMAGE,
-                    accuracyUsualUDID,
-                    ProjectileDamage.configManager.currentConfig.status_effect_accuracy_multiplier_per_stack, // 0.2 by default
+                    impactUsualUDID,
+                    ProjectileDamage.configManager.currentConfig.status_effect_impact_multiplier_per_stack, // 0.2 by default
                     EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
 }

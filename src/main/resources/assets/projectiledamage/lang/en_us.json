@@ -1,5 +1,5 @@
 {
   "attribute.name.generic.projectile_damage" : "Projectile Damage",
   "item.modifiers.both_hands": "When Held:",
-  "effect.projectiledamage.accuracy": "Accuracy"
+  "effect.projectiledamage.impact": "Impact"
 }

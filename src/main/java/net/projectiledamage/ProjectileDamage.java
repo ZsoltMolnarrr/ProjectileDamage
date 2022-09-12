@@ -27,9 +27,9 @@ public class ProjectileDamage implements ModInitializer {
         var ref = EntityAttributes_ProjectileDamage.GENERIC_PROJECTILE_DAMAGE;
         var config = configManager.currentConfig;
         ((IProjectileWeapon)Items.BOW).setProjectileDamage(config.default_bow_damage);
-        ((IProjectileWeapon)Items.CROSSBOW).setProjectileDamage(config.default_crowssbow_damage);
+        ((IProjectileWeapon)Items.CROSSBOW).setProjectileDamage(config.default_crossbow_damage);
         Registry.register(Registry.STATUS_EFFECT,
-                new Identifier(MODID, StatusEffects_ProjectileDamage.accuracyId),
-                StatusEffects_ProjectileDamage.ACCURACY);
+                new Identifier(MODID, StatusEffects_ProjectileDamage.impactId),
+                StatusEffects_ProjectileDamage.IMPACT);
     }
 }
