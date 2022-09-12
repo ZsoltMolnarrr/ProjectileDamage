@@ -2,7 +2,7 @@ package net.projectiledamage;
 
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.item.Items;
-import net.projectiledamage.api.AdditionalEntityAttributes;
+import net.projectiledamage.api.EntityAttributes_ProjectileDamage;
 import net.projectiledamage.api.IProjectileWeapon;
 import net.projectiledamage.config.Config;
 import net.projectiledamage.config.Default;
@@ -21,7 +21,7 @@ public class ProjectileDamage implements ModInitializer {
     @Override
     public void onInitialize() {
         configManager.refresh();
-        var ref = AdditionalEntityAttributes.GENERIC_PROJECTILE_DAMAGE;
+        var ref = EntityAttributes_ProjectileDamage.GENERIC_PROJECTILE_DAMAGE;
         var config = configManager.currentConfig;
         ((IProjectileWeapon)Items.BOW).setProjectileDamage(config.default_bow_damage);
         ((IProjectileWeapon)Items.CROSSBOW).setProjectileDamage(config.default_crowssbow_damage);

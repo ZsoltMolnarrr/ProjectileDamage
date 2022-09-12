@@ -9,7 +9,7 @@ import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Hand;
-import net.projectiledamage.api.AdditionalEntityAttributes;
+import net.projectiledamage.api.EntityAttributes_ProjectileDamage;
 import net.projectiledamage.internal.Constants;
 import net.projectiledamage.internal.RangedWeapon;
 import org.spongepowered.asm.mixin.Mixin;
@@ -51,7 +51,7 @@ class ServerWorldMixin {
                             usedHand == Hand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND
                     ));
                 }
-                var projectileDamage = owner.getAttributeValue(AdditionalEntityAttributes.GENERIC_PROJECTILE_DAMAGE);
+                var projectileDamage = owner.getAttributeValue(EntityAttributes_ProjectileDamage.GENERIC_PROJECTILE_DAMAGE);
                 // System.out.println("Firing hand: " + usedHand + ", weapon:" + usedWeapon + ", damage: " + projectileDamage);
 
                 if (usedWeapon != null && projectileDamage > 0) {
