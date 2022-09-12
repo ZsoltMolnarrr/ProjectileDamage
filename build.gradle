@@ -1,9 +1,10 @@
 plugins {
-    id 'fabric-loom' version '0.12-SNAPSHOT'
+    id 'fabric-loom' version '1.0-SNAPSHOT'
     id 'maven-publish'
     id 'com.matthewprenger.cursegradle' version '1.4.0'
     id "com.modrinth.minotaur" version "2.+"
     id "com.github.breadmoirai.github-release" version "2.4.1"
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
 version = "${project.mod_version}+1.19"
@@ -18,6 +19,10 @@ repositories {
     maven { url "https://jitpack.io" }
 }
 
+configurations {
+    shadowCommon
+}
+
 dependencies {
     // To change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -28,7 +33,7 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     // TinyConfig :)
-    implementation include("com.github.ZsoltMolnarrr:TinyConfig:${project.tiny_config_version}")
+    implementation shadowCommon("com.github.ZsoltMolnarrr:TinyConfig:${project.tiny_config_version}")
 }
 
 processResources {
@@ -62,6 +67,16 @@ java {
     // if it is present.
     // If you remove this line, sources will not be generated.
     withSourcesJar()
+}
+
+shadowJar {
+    configurations = [project.configurations.shadowCommon]
+    classifier 'dev'
+}
+
+remapJar {
+    inputFile = shadowJar.archiveFile
+    dependsOn shadowJar
 }
 
 jar {
