@@ -148,7 +148,8 @@ if(project.hasProperty('release_type')) {
     modrinth {
         token = System.getenv("MODRINTH_API_KEY")
         projectId = "projectile-damage-attribute" // This can be the project ID or the slug. Either will work!
-        versionNumber = "${version}" // You don't need to set this manually. Will fail if Modrinth has this version already
+        versionName = "${version}" // You don't need to set this manually. Will fail if Modrinth has this version already
+        versionNumber = "${version}-fabric" // You don't need to set this manually. Will fail if Modrinth has this version already
         versionType = release_type // This is the default -- can also be `beta` or `alpha`
         uploadFile = remapJar // With Loom, this MUST be set to `remapJar` instead of `jar`!
         gameVersions = ["1.19", "1.19.1", "1.19.2"] // Must be an array, even with only one version
