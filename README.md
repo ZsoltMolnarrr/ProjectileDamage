@@ -39,7 +39,7 @@ repositories {
 }
 
 dependencies {
-    modImplementation "maven.modrinth:projectile-damage-attribute:VERSION"
+    modImplementation "maven.modrinth:projectile-damage-attribute:VERSION-fabric"
 }
 ```
 
