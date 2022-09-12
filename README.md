@@ -14,7 +14,9 @@
 
 # 🏹️ Features
 
-Adds new EntityAttribute to the game, named `generic.projectile_damage`. This allows customization of damage done by individual Bow and Crossbow items in the game.  
+Adds new EntityAttribute to the game, named `generic.projectile_damage`. This allows customization of damage done by individual Bow and Crossbow items in the game.
+
+Adds new status effect named Impact, that increases the projectile damage of the entity.
 
 You can also use the API provided by this mod, to set the damage of your custom ranged weapons.  
 
