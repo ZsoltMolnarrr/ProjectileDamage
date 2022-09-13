@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Hand;
 import net.projectiledamage.api.EntityAttributes_ProjectileDamage;
+import net.projectiledamage.api.IProjectileWeapon;
 import net.projectiledamage.internal.Constants;
 import net.projectiledamage.internal.RangedWeapon;
 import org.spongepowered.asm.mixin.Mixin;
@@ -53,18 +54,34 @@ class ServerWorldMixin {
                 }
                 var projectileDamage = owner.getAttributeValue(EntityAttributes_ProjectileDamage.GENERIC_PROJECTILE_DAMAGE);
                 // System.out.println("Firing hand: " + usedHand + ", weapon:" + usedWeapon + ", damage: " + projectileDamage);
+                // System.out.println("Shooting projectile, initial velocity: " + projectile.getVelocity().length());
 
                 if (usedWeapon != null && projectileDamage > 0) {
                     var defaultDamage = 1.0;
+                    var defaultVelocity = 1.0;
+                    var currentVelocity = projectile.getVelocity().length();
                     switch (usedWeapon) {
                         case BOW -> {
                             defaultDamage = Constants.bowDefaultDamage;
+                            defaultVelocity = Constants.bowDefaultVelocity;
                         }
                         case CROSSBOW -> {
                             defaultDamage = Constants.crossbowDefaultDamage;
+                            defaultVelocity = Constants.crossbowDefaultVelocity;
                         }
                     }
-                    projectile.setDamage((projectileDamage / defaultDamage) * projectile.getDamage());
+                    var velocityMultipler = 1.0;
+                    if (usedStack != null && usedStack.getItem() instanceof IProjectileWeapon projectileWeapon) {
+                        var maxVelocity = projectileWeapon.getMaxProjectileVelocity();
+                        if (maxVelocity != null) {
+                            velocityMultipler = defaultVelocity / maxVelocity;
+                        }
+                    }
+
+                    projectile.setDamage(
+                            (projectileDamage / defaultDamage)
+                            * velocityMultipler
+                            * projectile.getDamage());
                 }
             }
         }

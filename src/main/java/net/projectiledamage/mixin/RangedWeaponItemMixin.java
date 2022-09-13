@@ -19,6 +19,7 @@ import java.util.List;
 abstract class RangedWeaponItemMixin extends Item implements IProjectileWeapon {
     private Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers = null;
     private List<EquipmentSlot> allowedSlots = List.of(EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND);
+    private Double projectileVelocity = null;
 
     // Helper, not actual source of truth
     private double projectileDamage = 0;
@@ -47,5 +48,15 @@ abstract class RangedWeaponItemMixin extends Item implements IProjectileWeapon {
 
     public double getProjectileDamage() {
         return projectileDamage;
+    }
+
+    @Override
+    public void setMaxProjectileVelocity(Double value) {
+        projectileVelocity = value;
+    }
+
+    @Override
+    public Double getMaxProjectileVelocity() {
+        return projectileVelocity;
     }
 }

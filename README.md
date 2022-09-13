@@ -26,6 +26,8 @@ You can also use the API provided by this mod, to set the damage of your custom 
 
 # 🔨 Using it as a modder
 
+## Installation
+
 Add this mod as dependency into your build.gradle file.
 ```groovy
 repositories {
@@ -54,10 +56,16 @@ In `fabric.mod.json` add a dependency to the mod:
 
 (Substitute `VERSION` with the latest release version of this mod, for example: `1.0.8+1.19`)
 
+## Configuring items
+
 Make sure the inheritance chain of your custom ranged weapon includes `RangedWeaponItem` or provide a custom implementation of `net.projectiledamage.api.IProjectileWeapon` interface (default implementaion can be found [here](./src/main/java/net/projectiledamage/api/IProjectileWeapon.java)).
 
-Set the projectile damage for your weapon instance, preferably before registering it:
+Set the projectile damage for your weapon instance, preferably before registering it.
+(Keep in mind, this doesn't fixate the damage output at a constant value, the vanilla behaviour adding randomness will be applied too)  
 ```java
-var myFancyBow = MyFancyBow();
-((IProjectileWeapon)myFancyBow).setProjectileDamage(7);
+((IProjectileWeapon)bowInstance).setProjectileDamage(10);
+```
+If your weapon releases arrows at a **non default velocity**, use the following to compensate the velocity and make the weapon perform the expected amount of damage. (Default velocity: bow: 3.0, crossbow: 3.15)
+```java
+((IProjectileWeapon)bowInstance).setMaxProjectileVelocity(4.2);
 ```
