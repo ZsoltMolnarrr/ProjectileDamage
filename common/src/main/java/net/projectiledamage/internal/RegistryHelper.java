@@ -2,6 +2,7 @@ package net.projectiledamage.internal;
 
 import net.minecraft.item.BowItem;
 import net.minecraft.item.CrossbowItem;
+import net.minecraft.item.Items;
 import net.minecraft.util.registry.Registry;
 import net.projectiledamage.ProjectileDamage;
 import net.projectiledamage.api.IProjectileWeapon;
@@ -9,6 +10,10 @@ import net.projectiledamage.api.IProjectileWeapon;
 public class RegistryHelper {
     public static void applyDefaultAttributes() {
         var config = ProjectileDamage.configManager.currentConfig;
+
+        ((IProjectileWeapon) Items.BOW).setProjectileDamage(config.default_bow_damage);
+        ((IProjectileWeapon)Items.CROSSBOW).setProjectileDamage(config.default_crossbow_damage);
+
         for(var entry: Registry.ITEM.getEntrySet()) {
             var item = entry.getValue();
             if (item instanceof IProjectileWeapon) {

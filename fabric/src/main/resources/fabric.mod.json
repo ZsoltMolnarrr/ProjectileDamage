@@ -14,10 +14,10 @@
   "environment": "*",
   "entrypoints": {
     "client": [
-      "net.projectiledamage.client.ProjectileDamageClient"
+      "net.projectiledamage.fabric.client.ProjectileDamageClientFabric"
     ],
     "main": [
-      "net.projectiledamage.ProjectileDamage"
+      "net.projectiledamage.fabric.ProjectileDamageFabric"
     ]
   },
   "mixins": [

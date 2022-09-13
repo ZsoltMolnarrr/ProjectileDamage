@@ -1,7 +1,7 @@
 package net.projectiledamage.client;
 
-import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableTextContent;
 import net.minecraft.util.Formatting;
@@ -13,13 +13,11 @@ import java.util.List;
 import static net.minecraft.item.ItemStack.MODIFIER_FORMAT;
 
 public class TooltipHelper {
-    public static void initialize() {
-        ItemTooltipCallback.EVENT.register((itemStack, context, lines) -> {
-            if (itemStack.getItem() instanceof IProjectileWeapon) {
-                mergeAttributeLines_MainHandOffHand(lines);
-                replaceAttributeLines_BlueWithGreen(lines);
-            }
-        });
+    public static void updateTooltipText(ItemStack itemStack, List<Text> lines) {
+        if (itemStack.getItem() instanceof IProjectileWeapon) {
+            mergeAttributeLines_MainHandOffHand(lines);
+            replaceAttributeLines_BlueWithGreen(lines);
+        }
     }
 
     private static void mergeAttributeLines_MainHandOffHand(List<Text> tooltip) {
