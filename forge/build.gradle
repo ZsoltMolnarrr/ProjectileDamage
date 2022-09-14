@@ -97,7 +97,6 @@ if(project.hasProperty('release_type')) {
         dependsOn(build)
         finalizedBy(tasks.curseforge)
         finalizedBy(tasks.modrinth)
-        finalizedBy(tasks.githubRelease)
     }
 
     curseforge {
