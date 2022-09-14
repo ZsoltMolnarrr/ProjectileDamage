@@ -110,9 +110,6 @@ if(project.hasProperty('release_type')) {
             addGameVersion "1.19.2"
             addGameVersion "Forge"
 
-            relations {
-            }
-
             mainArtifact(remapJar)
             afterEvaluate {
                 uploadTask.dependsOn(remapJar)
