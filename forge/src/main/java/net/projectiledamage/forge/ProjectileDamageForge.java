@@ -1,6 +1,5 @@
 package net.projectiledamage.forge;
 
-import net.minecraft.util.Identifier;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -26,7 +25,8 @@ public class ProjectileDamageForge {
         );
         event.register(ForgeRegistries.Keys.MOB_EFFECTS,
                 helper -> {
-                    helper.register(new Identifier(ProjectileDamage.MODID, StatusEffects_ProjectileDamage.impactId),
+                    helper.register(
+                            StatusEffects_ProjectileDamage.impactId,
                             StatusEffects_ProjectileDamage.IMPACT);
                 }
         );

@@ -13,7 +13,7 @@ public class ProjectileDamageFabric implements ModInitializer {
         ProjectileDamage.init();
         var ref = EntityAttributes_ProjectileDamage.GENERIC_PROJECTILE_DAMAGE;
         Registry.register(Registry.STATUS_EFFECT,
-                new Identifier(ProjectileDamage.MODID, StatusEffects_ProjectileDamage.impactId),
+                StatusEffects_ProjectileDamage.impactId,
                 StatusEffects_ProjectileDamage.IMPACT);
     }
 }
