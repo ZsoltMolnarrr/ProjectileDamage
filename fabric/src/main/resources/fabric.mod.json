@@ -3,7 +3,7 @@
   "id": "projectiledamage",
   "version": "${version}",
   "name": "Projectile Damage Attribute",
-  "description": "Adds generic projectile damage, so ranged weapon damage can be changed.",
+  "description": "Adds generic projectile damage attribute, so ranged weapon damage can be changed.",
   "authors": ["Daedelus"],
   "contact": {
     "issues": "https://github.com/ZsoltMolnarrr/ProjectileDamage/issues",
