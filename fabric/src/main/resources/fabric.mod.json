@@ -9,7 +9,7 @@
     "issues": "https://github.com/ZsoltMolnarrr/ProjectileDamage/issues",
     "homepage": "https://github.com/ZsoltMolnarrr/ProjectileDamage"
   },
-  "license": "MIT",
+  "license": "GPL-3.0",
   "icon": "assets/projectiledamage/icon.png",
   "environment": "*",
   "entrypoints": {
