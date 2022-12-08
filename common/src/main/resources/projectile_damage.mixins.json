@@ -7,7 +7,7 @@
     "RangedWeaponItemMixin",
     "LivingEntityMixin",
     "ServerWorldMixin",
-    "RegistriesMixin"
+    "RegistryMixin"
   ],
   "client": [
   ],

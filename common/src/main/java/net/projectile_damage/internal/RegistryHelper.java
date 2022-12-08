@@ -3,7 +3,7 @@ package net.projectile_damage.internal;
 import net.minecraft.item.BowItem;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.Items;
-import net.minecraft.registry.Registries;
+import net.minecraft.util.registry.Registry;
 import net.projectile_damage.ProjectileDamageMod;
 import net.projectile_damage.api.IProjectileWeapon;
 
@@ -14,7 +14,7 @@ public class RegistryHelper {
         ((IProjectileWeapon) Items.BOW).setProjectileDamage(config.default_bow_damage);
         ((IProjectileWeapon)Items.CROSSBOW).setProjectileDamage(config.default_crossbow_damage);
 
-        for(var entry: Registries.ITEM.getEntrySet()) {
+        for(var entry: Registry.ITEM.getEntrySet()) {
             var item = entry.getValue();
             if (item instanceof IProjectileWeapon) {
                 var rangedWeapon = ((IProjectileWeapon) item);
