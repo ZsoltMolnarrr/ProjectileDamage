@@ -52,7 +52,7 @@ In `fabric.mod.json` add a dependency to the mod:
   },
 ```
 
-(Substitute `VERSION` with the name of the latest release available on [Modrinth](https://modrinth.com/mod/projectile-damage-attribute/versions), for example: `2.2.0+1.19`)
+(Substitute `VERSION` with the name of the latest release available on [Modrinth](https://modrinth.com/mod/projectile-damage-attribute/versions), for example: `3.0.0`)
 
 ### Forge workspace
 ```groovy
@@ -64,12 +64,12 @@ In `mods.toml` add a dependency to the mod:
 ```
 modId="projectile_damage"
 mandatory=true
-versionRange="[3.0.0,)"
+versionRange="[VERSION,)"
 ordering="AFTER"
 side="BOTH"
 ```
 
-(Substitute `VERSION` with the name of the latest release available on [Modrinth](https://modrinth.com/mod/projectile-damage-attribute/versions), for example: `3.0.0+1.19`)
+(Substitute `VERSION` with the name of the latest release available on [Modrinth](https://modrinth.com/mod/projectile-damage-attribute/versions), for example: `3.0.0`)
 
 ## Configuring items
 
