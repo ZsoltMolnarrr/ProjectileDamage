@@ -15,7 +15,7 @@ issueTrackerURL = "https://github.com/ZsoltMolnarrr/ProjectileDamage/issues"
 # A list of mods - how many allowed here is determined by the individual mod loader
 [[mods]] #mandatory
 # The modid of the mod
-modId = "projectiledamage" #mandatory
+modId = "projectile_damage" #mandatory
 # The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
 # ${version} will substitute the value of the Implementation-Version as read from the mod's JAR file metadata
 # see the associated build.gradle script for how to populate this completely automatically during a build
@@ -45,7 +45,7 @@ description = '''
 Adds generic projectile damage attribute, so ranged weapon damage can be changed.
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
-[[dependencies.projectiledamage]] #optional
+[[dependencies.projectile_damage]] #optional
 # the modid of the dependency
 modId = "forge" #mandatory
 # Does this dependency have to exist - if not, ordering below must be specified
@@ -57,7 +57,7 @@ ordering = "NONE"
 # Side this dependency is applied on - BOTH, CLIENT or SERVER
 side = "BOTH"
 # Here's another dependency
-[[dependencies.projectiledamage]]
+[[dependencies.projectile_damage]]
 modId = "minecraft"
 mandatory = true
 # This version range declares a minimum of the current minecraft version up to but not including the next major version

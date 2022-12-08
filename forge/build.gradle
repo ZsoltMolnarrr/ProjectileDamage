@@ -6,7 +6,7 @@ plugins {
 
 loom {
     forge {
-        mixinConfig "projectiledamage.mixins.json"
+        mixinConfig "projectile_damage.mixins.json"
     }
 }
 
@@ -53,7 +53,7 @@ shadowJar {
     configurations = [project.configurations.shadowCommon]
     classifier "dev-shadow"
 
-    relocate 'net.tinyconfig', 'net.projectiledamage.tinyconfig'
+    relocate 'net.tinyconfig', 'net.projectile_damage.tinyconfig'
 }
 
 remapJar {

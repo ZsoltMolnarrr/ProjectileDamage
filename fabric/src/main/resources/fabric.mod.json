@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "projectiledamage",
+  "id": "projectile_damage",
   "version": "${version}",
   "name": "Projectile Damage Attribute",
   "description": "Adds generic projectile damage attribute, so ranged weapon damage can be changed.",
@@ -10,18 +10,18 @@
     "homepage": "https://github.com/ZsoltMolnarrr/ProjectileDamage"
   },
   "license": "GPL-3.0",
-  "icon": "assets/projectiledamage/icon.png",
+  "icon": "assets/projectile_damage/icon.png",
   "environment": "*",
   "entrypoints": {
     "client": [
-      "net.projectiledamage.fabric.client.ProjectileDamageClientFabric"
+      "net.projectile_damage.fabric.client.FabricClientMod"
     ],
     "main": [
-      "net.projectiledamage.fabric.ProjectileDamageFabric"
+      "net.projectile_damage.fabric.FabricMod"
     ]
   },
   "mixins": [
-    "projectiledamage.mixins.json"
+    "projectile_damage.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.14.0",

@@ -48,7 +48,7 @@ dependencies {
 In `fabric.mod.json` add a dependency to the mod:
 ```json
   "depends": {
-    "projectiledamage": ">=VERSION"
+    "projectile_damage": ">=VERSION"
   },
 ```
 
@@ -62,7 +62,7 @@ dependencies {
 ```
 In `mods.toml` add a dependency to the mod:
 ```
-modId="projectiledamage"
+modId="projectile_damage"
 mandatory=true
 versionRange="[2.2.0,)"
 ordering="AFTER"
@@ -73,7 +73,7 @@ side="BOTH"
 
 ## Configuring items
 
-Make sure the inheritance chain of your custom ranged weapon includes `RangedWeaponItem` or provide a custom implementation of `net.projectiledamage.api.IProjectileWeapon` interface (default implementaion can be found [here](./src/main/java/net/projectiledamage/api/IProjectileWeapon.java)).
+Make sure the inheritance chain of your custom ranged weapon includes `RangedWeaponItem` or provide a custom implementation of `net.projectile_damage.api.IProjectileWeapon` interface (default implementaion can be found [here](./src/main/java/net/projectile_damage/api/IProjectileWeapon.java)).
 
 Set the projectile damage for your weapon instance, preferably before registering it.
 (Keep in mind, this doesn't fixate the damage output at a constant value, the vanilla behaviour adding randomness will be applied too)  
