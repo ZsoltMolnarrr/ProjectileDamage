@@ -14,6 +14,6 @@ public class StatusEffects_ProjectileDamage {
             .addAttributeModifier(
                     EntityAttributes_ProjectileDamage.GENERIC_PROJECTILE_DAMAGE,
                     impactUsualUDID,
-                    ProjectileDamageMod.configManager.currentConfig.status_effect_impact_multiplier_per_stack, // 0.2 by default
+                    ProjectileDamageMod.configManager.value.status_effect_impact_multiplier_per_stack, // 0.2 by default
                     EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
 }

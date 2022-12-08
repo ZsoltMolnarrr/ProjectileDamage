@@ -9,7 +9,7 @@ import net.projectile_damage.api.IProjectileWeapon;
 
 public class RegistryHelper {
     public static void applyDefaultAttributes() {
-        var config = ProjectileDamageMod.configManager.currentConfig;
+        var config = ProjectileDamageMod.configManager.value;
 
         ((IProjectileWeapon) Items.BOW).setProjectileDamage(config.default_bow_damage);
         ((IProjectileWeapon)Items.CROSSBOW).setProjectileDamage(config.default_crossbow_damage);
