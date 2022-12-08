@@ -19,7 +19,7 @@ public class ForgeMod {
     public void register(RegisterEvent event) {
         event.register(ForgeRegistries.Keys.ATTRIBUTES,
                 helper -> {
-                    var asd = EntityAttributes_ProjectileDamage.GENERIC_PROJECTILE_DAMAGE;
+                    ProjectileDamageMod.registerAttributes();
                 }
         );
     }
