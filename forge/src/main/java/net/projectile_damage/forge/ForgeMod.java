@@ -22,12 +22,5 @@ public class ForgeMod {
                     var asd = EntityAttributes_ProjectileDamage.GENERIC_PROJECTILE_DAMAGE;
                 }
         );
-        event.register(ForgeRegistries.Keys.MOB_EFFECTS,
-                helper -> {
-                    helper.register(
-                            StatusEffects_ProjectileDamage.impactId,
-                            StatusEffects_ProjectileDamage.IMPACT);
-                }
-        );
     }
 }

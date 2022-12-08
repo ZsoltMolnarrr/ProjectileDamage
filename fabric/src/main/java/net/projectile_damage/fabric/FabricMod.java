@@ -10,9 +10,7 @@ public class FabricMod implements ModInitializer {
     @Override
     public void onInitialize() {
         ProjectileDamageMod.init();
-        var ref = EntityAttributes_ProjectileDamage.GENERIC_PROJECTILE_DAMAGE;
-        Registry.register(Registry.STATUS_EFFECT,
-                StatusEffects_ProjectileDamage.impactId,
-                StatusEffects_ProjectileDamage.IMPACT);
+        ProjectileDamageMod.registerAttributes();
+        ProjectileDamageMod.registerStatusEffects();
     }
 }
