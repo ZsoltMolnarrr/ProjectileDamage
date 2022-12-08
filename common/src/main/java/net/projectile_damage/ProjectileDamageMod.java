@@ -1,6 +1,7 @@
 package net.projectile_damage;
 
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.projectile_damage.api.EntityAttributes_ProjectileDamage;
 import net.projectile_damage.api.StatusEffects_ProjectileDamage;
 import net.projectile_damage.config.Config;
@@ -25,7 +26,7 @@ public class ProjectileDamageMod {
     }
 
     public static void registerStatusEffects() {
-        Registry.register(Registry.STATUS_EFFECT,
+        Registry.register(Registries.STATUS_EFFECT,
                 StatusEffects_ProjectileDamage.impactId,
                 StatusEffects_ProjectileDamage.IMPACT);
     }
