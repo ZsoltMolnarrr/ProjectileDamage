@@ -6,7 +6,7 @@ plugins {
 
 loom {
     forge {
-        mixinConfig "projectiledamage.mixins.json"
+        mixinConfig "projectile_damage.mixins.json"
     }
 }
 
@@ -53,7 +53,7 @@ shadowJar {
     configurations = [project.configurations.shadowCommon]
     classifier "dev-shadow"
 
-    relocate 'net.tinyconfig', 'net.projectiledamage.tinyconfig'
+    relocate 'net.tinyconfig', 'net.projectile_damage.tinyconfig'
 }
 
 remapJar {
@@ -103,7 +103,8 @@ if(project.hasProperty('release_type')) {
         apiKey = System.getenv("CURSEFORGE_API_KEY")
         project {
             id = '643780'
-            changelog = ''
+            changelog = changelog_last_section()
+            changelogType = 'markdown'
             releaseType = release_type
             addGameVersion "1.18.2"
             addGameVersion "Forge"
