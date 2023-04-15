@@ -1,3 +1,6 @@
+# 3.1.0
+- Add support for custom ranged weapon types (for example: as canons)
+
 # 3.0.0
 - New mod id (`projectiledamage` -> `projectile_damage`)
 - New id for Projectile Damage attribute  (`generic.projectile_damage` -> `projectile_damage:generic`)
