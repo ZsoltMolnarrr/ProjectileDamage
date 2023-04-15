@@ -71,7 +71,7 @@ side="BOTH"
 
 (Substitute `VERSION` with the name of the latest release available on [Modrinth](https://modrinth.com/mod/projectile-damage-attribute/versions), for example: `3.0.0`)
 
-## Configuring items
+## Applying projectile damage to weapons
 
 1. Make sure the inheritance chain of your custom ranged weapon includes the vanilla class `ProjectileWeaponItem` (yarn:`RangedWeaponItem`) or provide a custom implementation of `net.projectile_damage.api.IProjectileWeapon` interface (default implementaion can be found [here](./common/src/main/java/net/projectile_damage/api/IProjectileWeapon.java)).
 
@@ -80,9 +80,10 @@ side="BOTH"
 ```java
 ((IProjectileWeapon)bowInstance).setProjectileDamage(10);
 ```
-3. (Optional) If your weapon releases arrows at a **non default velocity**, use the following to **compensate** the velocity and make the weapon perform the expected amount of damage. (Default velocity: bow: 3.0, crossbow: 3.15).
 
-Note: This will not change velocity of projectiles. You can also use this, to compensate damage of non-standard projectile types (such as canon ball).
+(Note: assigned damage value will be applied on the spawned arrow by this mod, no additional coding is required on your end.)
+
+3. (Optional) If your weapon releases arrows at a **non default velocity**, use the following to **compensate** the velocity and make the weapon perform the expected amount of damage. (Default velocity: bow: 3.0, crossbow: 3.15).
 
 ```java
 ((IProjectileWeapon)bowInstance).setMaxProjectileVelocity(4.2);
