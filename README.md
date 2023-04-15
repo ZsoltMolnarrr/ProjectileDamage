@@ -73,14 +73,17 @@ side="BOTH"
 
 ## Configuring items
 
-Make sure the inheritance chain of your custom ranged weapon includes `RangedWeaponItem` or provide a custom implementation of `net.projectile_damage.api.IProjectileWeapon` interface (default implementaion can be found [here](./common/src/main/java/net/projectile_damage/api/IProjectileWeapon.java)).
+1. Make sure the inheritance chain of your custom ranged weapon includes the vanilla class `ProjectileWeaponItem` (yarn:`RangedWeaponItem`) or provide a custom implementation of `net.projectile_damage.api.IProjectileWeapon` interface (default implementaion can be found [here](./common/src/main/java/net/projectile_damage/api/IProjectileWeapon.java)).
 
-Set the projectile damage for your weapon instance, preferably before registering it.
+2. Set the projectile damage for your weapon instance, preferably before registering it.
 (Keep in mind, this doesn't fixate the damage output at a constant value, the vanilla behaviour adding randomness will be applied too)  
 ```java
 ((IProjectileWeapon)bowInstance).setProjectileDamage(10);
 ```
-If your weapon releases arrows at a **non default velocity**, use the following to compensate the velocity and make the weapon perform the expected amount of damage. (Default velocity: bow: 3.0, crossbow: 3.15)
+3. (Optional) If your weapon releases arrows at a **non default velocity**, use the following to **compensate** the velocity and make the weapon perform the expected amount of damage. (Default velocity: bow: 3.0, crossbow: 3.15).
+
+Note: This will not change velocity of projectiles. You can also use this, to compensate damage of non-standard projectile types (such as canon ball).
+
 ```java
 ((IProjectileWeapon)bowInstance).setMaxProjectileVelocity(4.2);
 ```
