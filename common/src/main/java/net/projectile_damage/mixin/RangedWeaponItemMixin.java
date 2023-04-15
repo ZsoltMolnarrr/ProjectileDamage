@@ -9,6 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.RangedWeaponItem;
 import net.projectile_damage.api.EntityAttributes_ProjectileDamage;
 import net.projectile_damage.api.IProjectileWeapon;
+import net.projectile_damage.api.RangedWeaponKind;
 import net.projectile_damage.internal.Constants;
 import org.spongepowered.asm.mixin.Mixin;
 
@@ -19,7 +20,8 @@ import java.util.List;
 abstract class RangedWeaponItemMixin extends Item implements IProjectileWeapon {
     private Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers = null;
     private List<EquipmentSlot> allowedSlots = List.of(EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND);
-    private Double projectileVelocity = null;
+    private Double customLaunchVelocity = null;
+    private RangedWeaponKind rangedWeaponKind = RangedWeaponKind.from(this);
 
     // Helper, not actual source of truth
     private double projectileDamage = 0;
@@ -30,6 +32,19 @@ abstract class RangedWeaponItemMixin extends Item implements IProjectileWeapon {
 
     public Multimap<EntityAttribute, EntityAttributeModifier> getAttributeModifiers(EquipmentSlot slot) {
         return (allowedSlots.contains(slot) && this.attributeModifiers != null) ? this.attributeModifiers : super.getAttributeModifiers(slot);
+    }
+
+    public void setRangedWeaponKind(RangedWeaponKind kind) {
+        this.rangedWeaponKind = kind;
+        if (projectileDamage == 0) {
+            // If no scaling was configured just yet, use default damage
+            this.setProjectileDamage(kind.damage());
+        }
+    }
+
+    @Override
+    public RangedWeaponKind getRangeWeaponKind() {
+        return this.rangedWeaponKind;
     }
 
     public void setProjectileDamage(double value, boolean mainHand, boolean offHand) {
@@ -51,12 +66,12 @@ abstract class RangedWeaponItemMixin extends Item implements IProjectileWeapon {
     }
 
     @Override
-    public void setMaxProjectileVelocity(Double value) {
-        projectileVelocity = value;
+    public void setCustomLaunchVelocity(Double value) {
+        customLaunchVelocity = value;
     }
 
     @Override
-    public Double getMaxProjectileVelocity() {
-        return projectileVelocity;
+    public Double getCustomLaunchVelocity() {
+        return customLaunchVelocity;
     }
 }
