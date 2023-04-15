@@ -21,14 +21,13 @@ abstract class RangedWeaponItemMixin extends Item implements IProjectileWeapon {
     private Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers = null;
     private List<EquipmentSlot> allowedSlots = List.of(EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND);
     private Double customLaunchVelocity = null;
-    private RangedWeaponKind rangedWeaponKind = null;
+    private RangedWeaponKind rangedWeaponKind = RangedWeaponKind.from(this);
 
     // Helper, not actual source of truth
     private double projectileDamage = 0;
 
     RangedWeaponItemMixin(Settings settings) {
         super(settings);
-        this.rangedWeaponKind = RangedWeaponKind.from(this);
     }
 
     public Multimap<EntityAttribute, EntityAttributeModifier> getAttributeModifiers(EquipmentSlot slot) {

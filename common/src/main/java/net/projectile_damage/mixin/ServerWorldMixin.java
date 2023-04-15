@@ -81,14 +81,9 @@ class ServerWorldMixin {
         if (item == null) {
             return null;
         }
-        RangedWeaponKind kind = null;
         if (item instanceof IProjectileWeapon weapon) {
-            kind = weapon.getRangeWeaponKind();
+            return weapon.getRangeWeaponKind();
         }
-        if (kind == null) {
-            System.err.println("Item without unrecognized ranged weapon type! " + item);
-            System.err.println("Use `((IProjectileWeapon)instance).setRangedWeaponKind(RangedWeaponKind.custom(...))");
-        }
-        return kind;
+        return null;
     }
 }
