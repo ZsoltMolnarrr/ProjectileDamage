@@ -73,7 +73,9 @@ side="BOTH"
 
 ## Applying projectile damage to weapons
 
-1. Make sure the inheritance chain of your custom ranged weapon includes the vanilla class `ProjectileWeaponItem` (yarn:`RangedWeaponItem`) or provide a custom implementation of `net.projectile_damage.api.IProjectileWeapon` interface (default implementaion can be found [here](./common/src/main/java/net/projectile_damage/api/IProjectileWeapon.java)).
+### Bows and Crossbows
+
+1. Make sure your custom Bow or Crossbow inherits from vanilla Bow or Crossbow classes.  
 
 2. Set the projectile damage for your weapon instance, preferably before registering it.
 (Keep in mind, this doesn't fixate the damage output at a constant value, the vanilla behaviour adding randomness will be applied too)  
@@ -87,4 +89,44 @@ side="BOTH"
 
 ```java
 ((IProjectileWeapon)bowInstance).setMaxProjectileVelocity(4.2);
+```
+
+### Custom weapon types
+
+Custom weapon types such as: canons, blowpipes, etc...
+
+1. Make sure the inheritance chain of your custom ranged weapon includes the vanilla class `ProjectileWeaponItem` (yarn:`RangedWeaponItem`) or provide a custom implementation of `net.projectile_damage.api.IProjectileWeapon` interface (default implementaion can be found [here](./common/src/main/java/net/projectile_damage/api/IProjectileWeapon.java)).
+
+2. Create a custom weapon type and save it somewhere. This holds the shared properties of your weapon class, which each instance will be scaled against.
+
+```java
+public static class MyModItems {
+    static RangedWeaponKind CANON = RangedWeaponKind.custom(6, 1.9D);
+}
+```
+
+3. Configure your items.
+
+```java
+public static class MyModItems {
+    static RangedWeaponKind CANNON = RangedWeaponKind.custom(6, 1.9D);
+    
+    public static MyCanon woodenCanon;
+    public static MyCanon ironCanon;
+    public static MyCanon diamondCanon;
+    
+    static {
+        woodenCannon = new MyCannon(...);
+        ((IProjectileWeapon)woodenCannon).setRangedWeaponKind(CANNON);
+        // No custom damage is configured, default will be used from weapon kind
+        
+        ironCannon = new MyCannon(...);
+        ((IProjectileWeapon)ironCannon).setRangedWeaponKind(CANNON);
+        ((IProjectileWeapon)ironCannon).setProjectileDamage(8);
+        
+        diamondCannon = new MyCannon(...);
+        ((IProjectileWeapon)diamondCannon).setRangedWeaponKind(CANNON);
+        ((IProjectileWeapon)ironCannon).setProjectileDamage(10);
+    } 
+}
 ```
