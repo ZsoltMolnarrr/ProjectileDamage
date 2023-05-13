@@ -7,8 +7,6 @@
 
 name: Publish
 
-concurrency: publish
-
 on:
   workflow_dispatch:
     inputs:
