@@ -64,9 +64,14 @@ class ServerWorldMixin {
                         }
                     }
 
+                    System.out.println("Launching modified arrow, damage multiplier: " + (projectileDamage / defaultDamage) + " velocityMultiplier: " + velocityMultiplier);
+
                     projectile.setDamage(projectile.getDamage()
                             * (projectileDamage / defaultDamage)
-                            * velocityMultiplier);
+                            * velocityMultiplier
+                            * weaponKind.adjustingMultiplier());
+
+                    System.out.println(" - Damage: " + projectile.getDamage());
                 }
             }
         }
