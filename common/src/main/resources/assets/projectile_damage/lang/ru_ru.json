@@ -1,0 +1,5 @@
+{
+  "attribute.name.projectile_damage.generic" : "Урон от снаряда",
+  "item.modifiers.both_hands": "Когда держится в руках:",
+  "effect.projectile_damage.impact": "Ударная сила"
+}
