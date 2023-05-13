@@ -6,9 +6,12 @@ import net.minecraft.item.Item;
 import net.projectile_damage.internal.Constants;
 import org.jetbrains.annotations.Nullable;
 
-public record RangedWeaponKind(double damage, double launchVelocity) {
-    public static RangedWeaponKind bow = new RangedWeaponKind(Constants.bowDefaultDamage, Constants.bowDefaultVelocity);
-    public static RangedWeaponKind crossbow = new RangedWeaponKind(Constants.crossbowDefaultDamage, Constants.crossbowDefaultVelocity);
+public record RangedWeaponKind(double damage, double launchVelocity, double adjustingMultiplier) {
+    public static final RangedWeaponKind bow = new RangedWeaponKind(Constants.bowDefaultDamage, Constants.bowDefaultVelocity, 1);
+    public static final RangedWeaponKind crossbow = new RangedWeaponKind(
+            Constants.crossbowDefaultDamage,
+            Constants.crossbowDefaultVelocity,
+            1.15);
 
     /**
      * Create custom ranged weapon kind
@@ -17,7 +20,11 @@ public record RangedWeaponKind(double damage, double launchVelocity) {
      * @return
      */
     public static RangedWeaponKind custom(double damage, double launchVelocity) {
-        return new RangedWeaponKind(damage, launchVelocity);
+        return new RangedWeaponKind(damage, launchVelocity, 1);
+    }
+
+    public static RangedWeaponKind custom(double damage, double launchVelocity, double adjustingMultiplier) {
+        return new RangedWeaponKind(damage, launchVelocity, adjustingMultiplier);
     }
 
     @Nullable

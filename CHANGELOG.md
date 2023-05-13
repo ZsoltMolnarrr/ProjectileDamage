@@ -1,3 +1,7 @@
+# 3.2.0
+- Fix linearity damage output scaling (high damage weapons were doing less then supposed to)
+- Reduce damage deviation of critical strikes (was exoticly high in some cases) 
+
 # 3.1.0
 - Add support for custom ranged weapon types (for example: as canons)
 
