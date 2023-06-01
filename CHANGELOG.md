@@ -1,6 +1,7 @@
 # 3.2.1
 
 - Remove console logging about arrows released
+- Add russian translation, thanks to Heimdallr #8
 
 # 3.2.0
 
