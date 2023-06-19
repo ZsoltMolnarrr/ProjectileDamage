@@ -1,3 +1,8 @@
+# 3.2.2
+
+- Support Minecraft 1.20.X
+- Fix mod meta data
+
 # 3.2.1
 
 - Remove console logging about arrows released
