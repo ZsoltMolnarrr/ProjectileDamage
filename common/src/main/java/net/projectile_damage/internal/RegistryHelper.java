@@ -10,9 +10,6 @@ import net.projectile_damage.api.IProjectileWeapon;
 
 public class RegistryHelper {
     public static void applyDefaultAttributes() {
-        if (Platform.isModLoaded("ranged_weapon_api")) {
-            return;
-        }
         var config = ProjectileDamageMod.configManager.value;
 
         ((IProjectileWeapon) Items.BOW).setProjectileDamage(config.default_bow_damage);
